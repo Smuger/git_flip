@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# Define personal and work accounts
+PERSONAL_NAME="personal_username"
+PERSONAL_EMAIL="adam.smith@personal.com"
+
+WORK_NAME="work_username"
+WORK_EMAIL="adam.smith@work.com"
+
+# Get the current Git user
+CURRENT_USER=$(git config --global user.name)
+
+# Toggle between accounts
+if [ "$CURRENT_USER" == "$PERSONAL_NAME" ]; then
+    echo "Switching to WORK account..."
+    git config --global user.name "$WORK_NAME"
+    git config --global user.email "$WORK_EMAIL"
+else
+    echo "Switching to PERSONAL account..."
+    git config --global user.name "$PERSONAL_NAME"
+    git config --global user.email "$PERSONAL_EMAIL"
+fi
+
+# Confirm change
+echo "Current Git user: $(git config --global user.name) <$(git config --global user.email)>"
